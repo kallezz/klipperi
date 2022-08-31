@@ -59,12 +59,14 @@ const Clips: NextPage = () => {
         {results.data &&
           results.data.map((channel: TwitchProfile) => (
             <ProfileCard
+              key={channel.id}
               name={channel.display_name}
               image={channel.thumbnail_url}
               isLive={channel.is_live}
               title={channel.title}
               game={channel.game_name}
               url={channel.broadcaster_login}
+              id={channel.id}
             />
           ))}
       </div>

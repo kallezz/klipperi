@@ -9,6 +9,7 @@ interface ProfileCardProps {
   title: string;
   game: string;
   url: string;
+  id: string;
 }
 
 const ProfileCard = ({
@@ -18,9 +19,10 @@ const ProfileCard = ({
   title,
   game,
   url,
+  id,
 }: ProfileCardProps) => {
   return (
-    <Link href={`/clips/${url}`}>
+    <Link href={`/clips/${id}`}>
       <a>
         <div className="flex gap-4 items-center p-2 bg-twitch text-white rounded-xl hover:bg-twitch-dark cursor-pointer transition-all">
           <div className="relative w-8 h-8">
