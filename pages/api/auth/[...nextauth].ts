@@ -6,8 +6,8 @@ export default NextAuth({
   providers: [
     TwitchProvider({
       name: "Twitch",
-      clientId: "oqd2wzwb4af7w65bjf69qlztg6gsta",
-      clientSecret: "0d5qb28obirdjf9tnvxjiicv8d9xuj",
+      clientId: process.env.TWITCH_CLIENT_ID || "",
+      clientSecret: process.env.TWITCH_SECRET || "",
     }),
   ],
   callbacks: {

@@ -1,7 +1,7 @@
 import React from "react";
 
 interface LayoutProps {
-  children: React.ReactElement;
+  children: React.ReactElement[];
 }
 
 const Layout = ({ children }: LayoutProps) => {
