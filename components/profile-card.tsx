@@ -24,7 +24,7 @@ const ProfileCard = ({
   return (
     <Link href={`/clips/${id}`}>
       <a>
-        <div className="flex gap-4 items-center p-2 bg-twitch text-white rounded-xl hover:bg-twitch-dark cursor-pointer transition-all">
+        <div className="flex gap-4 items-center p-4 bg-twitch-dark text-white rounded-xl hover:bg-twitch cursor-pointer transition-all">
           <div className="relative w-8 h-8">
             <Image
               className="rounded-full"

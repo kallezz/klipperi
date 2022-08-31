@@ -10,11 +10,7 @@ const Home: NextPage = () => {
       <div className="border rounded-xl shadow p-4 w-96 flex flex-col gap-4">
         {session ? (
           <>
-            <p>Signed in as</p>
-            <ProfileCard
-              name={session.user?.name || "No name"}
-              image={session.user?.image || "#"}
-            />
+            <p>Signed in as {session.user?.name || "No name"}</p>
             <button
               className="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-xl text-white transition-all"
               onClick={() => signOut()}

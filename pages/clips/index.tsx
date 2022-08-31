@@ -49,7 +49,7 @@ const Clips: NextPage = () => {
   return (
     <Layout>
       <input
-        className="px-4 py-2 rounded-xl bg-slate-900 text-white border-2 border-twitch"
+        className="px-4 py-2 rounded-xl bg-slate-900 text-white border-2 border-twitch-dark focus:border-twitch focus:outline-none"
         type="text"
         placeholder="Search channels..."
         value={query}
