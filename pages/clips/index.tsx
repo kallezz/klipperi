@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { log } from "util";
 import ProfileCard from "../../components/profile-card";
 import { AxiosResponse } from "axios";
+import { useLazySearchChannelsQuery } from "../../redux/api/twitchApi";
 
 interface TwitchProfile {
   broadcaster_language: string;
@@ -22,27 +23,16 @@ interface TwitchProfile {
 
 const Clips: NextPage = () => {
   const { data: session } = useSession();
-
   const [query, setQuery] = useState<string>("");
-  const [results, setResults] = useState<any>({});
+  const [triggerSearch, { data, error, isLoading }] =
+    useLazySearchChannelsQuery();
 
   useEffect(() => {
-    twitch
-      .get("/helix/search/channels", {
-        params: {
-          query,
-        },
-        headers: {
-          Authorization: `Bearer ${session?.accessToken}` || "",
-        },
-      })
-      .then(({ data }) => {
-        setResults(data);
-      })
-      .catch((error) => console.log(error));
-
-    if (!query) {
-      setResults({});
+    if (query) {
+      triggerSearch({
+        query,
+        token: `${session?.accessToken}`,
+      });
     }
   }, [query]);
 
@@ -56,8 +46,10 @@ const Clips: NextPage = () => {
         onChange={(e) => setQuery(e.target.value)}
       />
       <div className="flex flex-wrap justify-center p-4 gap-4">
-        {results.data &&
-          results.data.map((channel: TwitchProfile) => (
+        {!isLoading &&
+          query &&
+          data?.data &&
+          data.data.map((channel: TwitchProfile) => (
             <ProfileCard
               key={channel.id}
               name={channel.display_name}
