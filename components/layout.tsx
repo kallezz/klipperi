@@ -1,4 +1,5 @@
 import React from "react";
+import Sidebar from "./sidebar";
 
 interface LayoutProps {
   children: React.ReactElement | React.ReactElement[];
@@ -6,8 +7,11 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="flex flex-col h-screen justify-center items-center bg-slate-900">
-      {children}
+    <div className="flex h-screen bg-slate-900">
+      <Sidebar />
+      <main className="flex flex-col h-screen justify-center items-center flex-grow">
+        {children}
+      </main>
     </div>
   );
 };
